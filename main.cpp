@@ -1,26 +1,28 @@
-// COMSC 210 | Lab 12 | Ibrahim Bello
+// COMSC 210 | Lab 13 | Ibrahim Bello
 // This program reads in a file of a month's sales from a lemonade stand
-// into a C++ STD array, and performs a variety of operations.
+// into a C++ STD vector, and performs a variety of operations.
 
-#include <fstream>
 #include <iostream>
-#include <array>
-#include <numeric>
+#include <vector>
+#include <fstream>
 #include <algorithm>
-#include <string>
+#include <numeric>
+#include <array>
+
 using namespace std;
+
 
 const int SIZE = 30;
 
 int main() {
-    array<double, SIZE> sales;
+    vector<double> sales;
     ifstream fin;
     fin.open("sales.txt");
+    double value;
     if (fin.good()) {
-        for ( size_t i = 0; i < sales.size(); i++) {
-            fin >> sales[i];
-            // Check that file was read correctly
-            cout << sales[i] << " "; 
+        while (fin >> value) {
+            sales.push_back(value);
+            
         }
         fin.close();
     }
@@ -35,7 +37,7 @@ int main() {
 
     // find
     double target = 3.4;   // search target
-    array<double, SIZE>::iterator it;  // declare iterator to point to the found element
+    vector<double>::iterator it;  // declare iterator to point to the found element
     it = find(sales.begin(), sales.end(), target);
     cout << "4. Value " << target;
     if (it != sales.end())
